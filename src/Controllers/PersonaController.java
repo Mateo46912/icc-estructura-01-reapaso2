@@ -13,7 +13,22 @@ public class PersonaController {
      * @param personas Array de Persona a ordenar.
      */
     public void ordenarPorEdad(Persona[] personas) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        int tam = personas.length;
+        for (int i = 1; i < tam; ++i) {
+            Persona aux = personas[i];
+            int j = i - 1;
+
+             // Ordena en orden ascendente
+             while (j >= 0 && aux.getEdad() < personas[j].getEdad()) { //la posi j es mayor a la posi i en ascendente
+                personas[j + 1] = personas[j]; // Desplaza el elemento hacia adelante
+                j--;
+            }
+            personas[j+1] = aux;
+        }
+        
+
+
+        
     }
 
     /**
@@ -26,7 +41,26 @@ public class PersonaController {
      *         encuentra.
      */
     public Persona buscarPorEdad(Persona[] personas, int edad) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        int bajo = 0;
+        int alto = personas.length-1;
+        while(alto>= bajo){
+            int central = (alto + bajo)/2;
+
+            if(personas[central].getEdad() == edad ){
+                System.out.println();
+                return personas[central];
+            }
+
+            if (personas[central].getEdad() > edad){
+                System.out.println();
+                alto = central - 1;
+            }else{
+                System.out.println();
+                bajo = central + 1;
+            }
+
+        }
+        return null;
 
     }
 }
